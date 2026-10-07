@@ -3,24 +3,25 @@
 #include <time.h>
 
 // Function to generate a random number following a Binomial Distribution B(n, p)
-// Here, n = 100 (max value) and p = 0.5
-int get_binomial_random(int n, double p) {
-    int count = 0;
+// Here, n = 100 (so the max value is 100) and p = 0.5
+int generate_binomial(int n, double p) {
+    int successes = 0;
     for (int i = 0; i < n; i++) {
+        // Generate a random float between 0.0 and 1.0
         double r = (double)rand() / RAND_MAX;
         if (r < p) {
-            count++;
+            successes++;
         }
     }
-    return count;
+    return successes;
 }
 
-// Function given in the image (Bubble Sort algorithm)
+// Function to sort the array using the algorithm provided in the image (Bubble Sort)
 void fun(int A[], int n) {
     for (int i = 0; i <= n - 2; i++) {
         for (int j = 0; j <= n - i - 2; j++) {
             if (A[j] > A[j + 1]) {
-                // Swap A[j] and A[j+1]
+                // Swap A[j] and A[j + 1]
                 int temp = A[j];
                 A[j] = A[j + 1];
                 A[j + 1] = temp;
@@ -30,25 +31,27 @@ void fun(int A[], int n) {
 }
 
 int main() {
-    int n = 10; // Size of the array
-    int A[10];
+    // Seed the random number generator
+    srand((unsigned int)time(NULL));
 
-    // Initialize random seed
-    srand(time(NULL));
+    int n = 30;
+    int A[30];
 
-    // Fill the array using Binomial Distribution B(100, 0.5)
-    printf("Original Array (Binomial Distributed, max 100):\n");
+    // Populate array A with random numbers (Max value 100) using Binomial Distribution
     for (int i = 0; i < n; i++) {
-        A[i] = get_binomial_random(100, 0.5);
+        A[i] = generate_binomial(100, 0.5);
+    }
+
+    printf("Array before sorting:\n");
+    for (int i = 0; i < n; i++) {
         printf("%d ", A[i]);
     }
     printf("\n\n");
 
-    // Pass the array into the function
+    // Sort the array using the provided algorithm
     fun(A, n);
 
-    // Output the sorted array
-    printf("Output Array (Sorted):\n");
+    printf("Output Array (Sorted Matrix/Vector):\n");
     for (int i = 0; i < n; i++) {
         printf("%d ", A[i]);
     }
