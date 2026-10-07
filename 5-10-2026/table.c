@@ -17,6 +17,7 @@ int main() {
 
         printf("%d | %d | %d | %d\n", a, b, c, X);
     }
+set clipboard+=unnamedplus
 
     return 0;
 }
